@@ -12,19 +12,19 @@ tasks:
       - npx zenn init
 
   preview:
-    desc: コンテンツをブラウザでプレビュー
+    desc: "コンテンツをブラウザでプレビュー (例: task preview PORT=3000 OPEN=true)"
     cmds:
-      - npx zenn preview {{.CLI_ARGS}}
+      - npx zenn preview {{if .PORT}}--port {{.PORT}}{{end}} {{if .HOST}}--host {{.HOST}}{{end}} {{if eq .OPEN "true"}}--open{{end}} {{if eq .NO_WATCH "true"}}--no-watch{{end}} {{.CLI_ARGS}}
 
   new:article:
-    desc: 新しい記事を追加
+    desc: "新しい記事を追加 (例: task new:article SLUG=timesfm-3-handson)"
     cmds:
-      - npx zenn new:article {{.CLI_ARGS}}
+      - npx zenn new:article {{if .SLUG}}--slug {{.SLUG}}{{end}} {{if .TITLE}}--title {{.TITLE}}{{end}} {{if .TYPE}}--type {{.TYPE}}{{end}} {{if .EMOJI}}--emoji {{.EMOJI}}{{end}} {{if .PUBLISHED}}--published {{.PUBLISHED}}{{end}} {{if .PUBLICATION_NAME}}--publication-name {{.PUBLICATION_NAME}}{{end}} {{.CLI_ARGS}}
 
   new:book:
-    desc: 新しい本を追加
+    desc: "新しい本を追加 (例: task new:book SLUG=my-book-slug)"
     cmds:
-      - npx zenn new:book {{.CLI_ARGS}}
+      - npx zenn new:book {{if .SLUG}}--slug {{.SLUG}}{{end}} {{if .TITLE}}--title {{.TITLE}}{{end}} {{if .PUBLISHED}}--published {{.PUBLISHED}}{{end}} {{if .SUMMARY}}--summary {{.SUMMARY}}{{end}} {{if .PRICE}}--price {{.PRICE}}{{end}} {{.CLI_ARGS}}
 
   list:articles:
     desc: 記事の一覧を表示
