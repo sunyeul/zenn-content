@@ -1,0 +1,4 @@
+interface:
+  display_name: "Cognitive Rhythm Writing"
+  short_description: "Vary readers’ cognitive motion across prose"
+  default_prompt: "Use $cognitive-rhythm-writing to revise this draft so its cognitive rhythm stays varied and purposeful."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Zenn Blog Writing"
+  short_description: "Draft and polish Zenn technical articles"
+  default_prompt: "Use $zenn-blog-writing to turn this project into a Zenn technical article."
