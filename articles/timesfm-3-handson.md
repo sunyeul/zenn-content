@@ -3,7 +3,7 @@ title: "TimesFM 3をColabで試す：関連データや予定を足すと予測�
 emoji: "📈"
 type: "tech"
 topics: ["timesfm", "時系列", "機械学習", "python", "colab"]
-published: false
+published: true
 ---
 
 ## はじめに
