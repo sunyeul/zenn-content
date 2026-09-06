@@ -1,0 +1,47 @@
+version: "3"
+
+tasks:
+  default:
+    desc: 利用可能なタスクを表示
+    cmds:
+      - task --list
+
+  init:
+    desc: コンテンツ管理用のディレクトリを作成. 初回のみ実行
+    cmds:
+      - npx zenn init
+
+  preview:
+    desc: コンテンツをブラウザでプレビュー
+    cmds:
+      - npx zenn preview {{.CLI_ARGS}}
+
+  new:article:
+    desc: 新しい記事を追加
+    cmds:
+      - npx zenn new:article {{.CLI_ARGS}}
+
+  new:book:
+    desc: 新しい本を追加
+    cmds:
+      - npx zenn new:book {{.CLI_ARGS}}
+
+  list:articles:
+    desc: 記事の一覧を表示
+    cmds:
+      - npx zenn list:articles
+
+  list:books:
+    desc: 本の一覧を表示
+    cmds:
+      - npx zenn list:books
+
+  version:
+    desc: zenn-cliのバージョンを表示
+    cmds:
+      - npx zenn --version
+
+  help:
+    desc: ヘルプ
+    cmds:
+      - npx zenn --help
