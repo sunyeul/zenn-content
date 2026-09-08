@@ -3,7 +3,7 @@ title: "TimesFM 3で施策の効果は測れる？「効果なし」と「効果
 emoji: "🔎"
 type: "tech"
 topics: ["timesfm", "因果推論", "時系列", "python", "colab"]
-published: false
+published: true
 ---
 
 ## はじめに
