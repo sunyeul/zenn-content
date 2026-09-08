@@ -55,11 +55,11 @@ Keep lists when comparison, completeness, or scanning benefits from them. Let th
 
 ### Remove self-narration, preserve judgment
 
-Cut transitions that merely report progress when the headings already signal it. Preserve substantive boundaries: a new dataset, target, baseline, or evaluation scope must be recognizable. Do not make separate demonstrations read as one continuous validation, or treat differences across datasets as a controlled comparison. A useful bridge explains what changes and why it matters.
+Cut transitions that merely report progress when the headings already signal it. Preserve substantive boundaries: a new dataset, target, baseline, or evaluation scope must be recognizable. Do not make separate demonstrations read as one continuous validation, or treat differences across datasets as a controlled comparison. A useful bridge explains what changes and why it matters. When a comparison changes its unit or number of alternatives, name the distinction before presenting it: for example, two prediction models can produce three estimation methods when one model uses two interval constructions. Introduce a later comparison through the unresolved question it answers, rather than merely announcing an appendix.
 
 ### Return to the concrete at the end
 
-Return to the question promised by the title and opening, state what the evidence answered, and give a concrete next action. Keep new material and planned follow-up work outside that promise. Leave a residual question only when it is real and useful.
+Return to the question promised by the title and opening, state what the evidence answered, and give a concrete next action. For validation guides, end with the decision criteria the reader gained, while retaining necessary limits; do not let repeated cautions replace the answer. Keep new material and planned follow-up work outside that promise. Leave a residual question only when it is real and useful.
 
 ## Output Modes
 

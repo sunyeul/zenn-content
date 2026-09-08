@@ -19,12 +19,14 @@ Center the reader’s task: what they want to do, what the technology now makes 
    - Infer these from the request and current artifacts; ask only when ambiguity materially changes the work.
    - Formulate the reader’s situation, newly possible action, and intended takeaway before choosing sections. Keep this planning concise rather than adding a separate audience section by default.
    - For revisions, establish what must stay unchanged and whether the user wants shorter prose. Preserve boundaries between this article and any planned follow-up.
+   - Distinguish an experiment report from a guide meant to be rerun. For the latter, explain result patterns and decision criteria without rewriting the narrative around one saved run; concrete outputs may illustrate the guide without becoming universal conclusions.
 2. Gather source material.
    - Read current local artifacts before revising claims: notebooks, stored outputs, figures, reports, code, and environment details. Prefer them over older notes; distinguish stored execution evidence from a fresh run and reconcile version differences where supported.
    - Find evidence of the promised change: a working example, before/after comparison, or observed result. Do not infer execution from code or use output placeholders as findings.
    - When code must remain untouched, preserve fenced code and output blocks exactly and compare them before and after editing. Verify existing result numbers and image/link targets separately; change them only within the authorized scope.
    - Browse only when the article relies on current platform rules, external papers, product docs, or public references.
    - For papers or external docs, cite the primary source.
+   - When adapting a notebook, reconcile its figures, tables, and bibliography with the article. Select supporting material deliberately, include requested outputs, and verify missing reference links rather than silently dropping entries.
 3. Choose the story shape.
    - Default to issue-driven storytelling for tooling, implementation, adoption, and AI-agent experiment posts.
    - Show a concrete before/after early when the value is not obvious: what was hard to inspect, operate, explain, or trust before, and what became easier after.
@@ -35,14 +37,16 @@ Center the reader’s task: what they want to do, what the technology now makes 
    - Avoid overly flat outlines. Use `##` for major story beats, `###` for sub-questions or phases inside that beat, and `####` for compact examples, caveats, or before/after details.
    - Put concrete inputs and the purpose of the comparison before array shapes or API details, unless the reader needs a lookup reference.
    - Keep explanations economical: replace jargon with a useful explanation while removing nearby repetition. When readability or brevity is requested, compare prose length excluding code/output blocks; use growth as a review signal, not a fixed reduction target.
-   - Give each experiment a readable result and its meaning, followed by the relevant limit. “Look at the graph” and caveats alone do not answer the question. Separate observed result, interpretation, and speculation.
+   - Give each experiment a readable result and its meaning, followed by the relevant limit. For rerunnable guides, explain what different outcomes would mean. “Look at the graph” and caveats alone do not answer the question. Separate observed result, interpretation, and speculation.
+   - Keep translation history, local paths, and saved-output provenance out of reader-facing prose unless needed for understanding or reproduction. Report execution status accurately to the user without turning that work report into article boilerplate.
+   - For this project, default editable table displays to two decimal places and counts to integers. Retain more precision where rounding hides a small value, changes a decision, or obscures a meaningful difference; preserve source calculations and protected outputs.
 5. Add Zenn front matter when creating an article file.
    - Include `title`, `emoji`, `type: "tech"` or `"idea"`, `topics`, and `published: false` for new drafts; preserve existing publication settings unless asked to change them.
-   - Match the title and topics to the final reader promise and actual scope. Keep topics short and lowercase where natural.
+   - Match the title and topics to the final reader promise and actual scope. For hands-on and experiment posts, prefer the technology plus a concrete question or action over a generic topic label. When consulting trending articles, borrow structural ideas rather than unsupported surprises or claims. Keep topics short and lowercase where natural.
 6. Add links and references.
    - Use GitHub file links for repo artifacts when the article targets public readers.
    - Prefer commit-pinned links for reproducibility; honor explicit requests for `main` links, including pre-merge drafts, without claiming that the destination is already available.
-   - For runnable tutorials, put a notebook or equivalent execution link near the first useful entry point. Derive repository paths from the actual project and verify them.
+   - For runnable tutorials, put a notebook or equivalent execution link near the first useful entry point. For this project, prefer a direct Colab link or badge over notebook paths and upload instructions; present a featured previous Zenn article as a standalone URL for a link card. Keep inline citations for supporting references. Derive repository paths from the actual project and verify them.
    - Include primary paper/source links in `参考`.
 7. Decide figures sparingly.
    - Prefer 1 concept figure near the motivation/design section and 1 result figure near results.
