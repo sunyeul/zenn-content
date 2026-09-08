@@ -320,7 +320,7 @@ def leave_one_out_band(values, i, level=0.90):
 | +5% | 320 | 誤差が効果の約94% |
 | +10% | 640 | 誤差が効果の約47% |
 
-同じ300でも、知りたい効果によって意味が変わります。
+同じ300でも、知りたい効果によって意味が変わります。**累積誤差が同じなら、真の効果が小さいほど、予測のズレとの区別は難しくなります。**
 
 点の位置と区間の幅も分けて読んでください。補正後の点が+10、区間が−290〜+310なら、点は0に近くても、誤差半径は300、全幅は600です。「0を含んだ」だけでは、小さな効果を読めるとは言えません。
 
@@ -554,7 +554,7 @@ real_upper = real_corrected + dev_radius
 
 まずは `bsts_comparison` でMAEと補正前の累積誤差を比べます。これで、どちらの予測器がどのウィンドウで外れたのかを見られます。その後で区間の比較へ進みます。
 
-#### BSTSとの予測比較
+#### TimesFMとBSTS、2つの予測モデルを比べる
 
 ![同じ条件でのTimesFMとBSTSのMAE・累積誤差比較](/images/timesfm3-causalimpact/bsts-forecast-comparison.png)
 *同じ条件でのTimesFMとBSTSのMAE・累積誤差比較。*
@@ -584,7 +584,11 @@ real_upper = real_corrected + dev_radius
 
 :::
 
-### 3つの結果は、何が違う？
+### 区間の作り方も含めて、3つの効果推定方式を比べる
+
+ここまでは、TimesFMとBSTSの予測誤差を比べました。次は、その予測から効果の点推定と区間をどう作るかを比べます。
+
+まず両モデルに、過去の累積誤差から作る経験的補正を適用します。さらにBSTSでは、モデル自体の事後分布を使う方法も確認します。**予測モデルは2つ、比較する効果推定方式は3つ**という組み合わせです。
 
 | 表示される方法 | 点推定と区間の作り方 | 比較で分かること |
 |---|---|---|
@@ -665,3 +669,8 @@ TimesFM 3は、対照時系列を含む反実仮想予測を追加学習なし�
 - [CausalImpactの累積効果・区間の実装](https://github.com/google/CausalImpact/blob/master/R/impact_inference.R)：BSTSの事後区間の計算
 - [Google ResearchによるTimesFM-3の紹介](https://research.google/blog/timesfm-3-a-zero-shot-foundation-model-for-multivariate-forecasting/)：共変量と予測の機能
 - [TimesFM 3.0の公式モデルカード](https://huggingface.co/google/timesfm-3.0-pytorch)：モデルとライセンス
+- [Hyndman, Cross-validation for time series](https://robjhyndman.com/hyndsight/tscv/)：予測開始時点をずらす時系列の交差検証
+- [Viviano & Bradic, Synthetic learner: model-free inference on treatments over time](https://arxiv.org/abs/1904.01490)：予測学習を用いた時系列の介入効果推論
+- [Chernozhukov, Wüthrich & Zhu, An Exact and Robust Conformal Inference Method for Counterfactual and Synthetic Controls](https://arxiv.org/abs/1712.09089)：反実仮想・合成対照のコンフォーマル推論。本文の経験的区間とは異なる方法
+- [Jander et al. (2026), Causal Analysis for Time Series Foundation Models](https://arxiv.org/abs/2608.24303)：合成データの生成過程への介入を通じた、時系列基盤モデルの挙動の検証
+- [Lal (2025), Time Series Foundation Models for Counterfactual Prediction with Panel Data: Numerical Properties and Comparisons](https://lalten.org/pages/fm_panel.html)：パネルデータでの時系列基盤モデルと従来の反実仮想予測手法の比較
