@@ -24,7 +24,9 @@ published: false
 
 最後に、同じ条件のBSTSとも比較します。予測器を変えると何が違うのか、区間の作り方まで含めて見ていきます。
 
-TimesFM 3の基本的な使い方や、関連データ・予定を加える予測は、前の記事[「TimesFM 3をColabで試す：関連データや予定を足すと予測は変わる？」](https://zenn.dev/sunyeul89/articles/timesfm-3-handson)で試しています。今回はそこから、予測を介入効果の分析に使う前の検証へ進みます。
+TimesFM 3の基本的な使い方や、関連データ・予定を加える予測は、前の記事で試しています。今回はそこから、予測を介入効果の分析に使う前の検証へ進みます。
+
+https://zenn.dev/sunyeul89/articles/timesfm-3-handson
 
 ## ノートブックを動かす準備
 
