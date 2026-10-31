@@ -1,7 +1,7 @@
 ---
 title: "クラシック・データサイエンスの現在地 #2 k-means — 少数の代表から圧縮・検索・学習へ"
 emoji: "🎨"
-type: "tech"
+type: "idea"
 topics: ["機械学習", "クラスタリング", "kmeans", "ベクトル検索"]
 published: true
 ---
