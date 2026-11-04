@@ -100,6 +100,12 @@ Meet Flowを実際の社内発表で使いました。参加者からは、こ�
 
 Meet Flowは非公開DOMに依存するため、Meet側のUI変更で収集が動かなくなる可能性があります。表示先はブラウザ内のWebタブが対象です。今回の使用とは別に、右下チャットの発言者名の対応や、画面共有を受ける参加者側の表示には追加確認が必要です。
 
-ここまでの要件と受け入れ条件は、PRD（プロダクト要求仕様書）にまとめました。コードやインストール用ZIPは配布せず、PRDのみをGistで公開しています。同じような仕組みを考える際や、ClaudeやCodexに実装を依頼する際の出発点になればと思っています。
+ここまでの要件と受け入れ条件は、PRD（プロダクト要求仕様書）にまとめました。コードやインストール用ZIPは配布せず、PRDのみをGistで公開しています。
+
+手元のClaudeやCodexにこのPRDを渡して、同じような拡張を実装してもらうこともできます。たとえば、次のように依頼します。
+
+```text
+Implement Meet Flow as a Chrome extension according to the following PRD: https://gist.github.com/sunyeul/1b6f844732b366317f05c5f01ecdbb39
+```
 
 https://gist.github.com/sunyeul/1b6f844732b366317f05c5f01ecdbb39
