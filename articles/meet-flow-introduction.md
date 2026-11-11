@@ -51,6 +51,103 @@ https://gist.github.com/sunyeul/1b6f844732b366317f05c5f01ecdbb39
 
 発表中に見ているのは、Meetの画面とは限りません。そのため、チャットを収集するMeetと、コメントを表示するWebタブは別々に指定できるようにしました。タブを切り替えただけでは表示先を変えず、表示先のページが再読み込み・移動されたら表示先を解除します。
 
+```html-embed
+<figure class="mf-flow" lang="ja">
+  <figcaption>Meetのチャットが表示先に届くまで</figcaption>
+  <ol>
+    <li>
+      <span class="mf-stage">収集元のMeetタブ</span>
+      <strong>新しいチャットを拾う</strong>
+      <p>チャット欄の変更を監視し、確定した未処理の投稿を取り出す。</p>
+    </li>
+    <li>
+      <span class="mf-stage">Chrome拡張</span>
+      <strong>表示先のタブへ送る</strong>
+      <p>拡張のバックグラウンド処理が、選択済みのWebタブに投稿を中継する。</p>
+    </li>
+    <li>
+      <span class="mf-stage">表示先のWebタブ</span>
+      <strong>コメントを重ねる</strong>
+      <p>拡張のiframe内で、コメントを横に流すか、右下に積む。</p>
+    </li>
+  </ol>
+</figure>
+<style>
+  body { margin: 0; }
+  .mf-flow {
+    --bg: #f0f6f6;
+    --surface: #fff;
+    --ink: #162e33;
+    --muted: #3d565c;
+    --accent: #16645b;
+    --line: #b5cfcb;
+    margin: 0;
+    padding: 16px;
+    color: var(--ink);
+    background: var(--bg);
+    font: 14px/1.55 system-ui, sans-serif;
+  }
+  [data-theme="dark"] .mf-flow {
+    --bg: #102426;
+    --surface: #183236;
+    --ink: #ecf8f6;
+    --muted: #bfd5d2;
+    --accent: #a0e6d9;
+    --line: #4e7675;
+  }
+  .mf-flow figcaption {
+    margin-bottom: 12px;
+    font-size: 17px;
+    font-weight: 700;
+  }
+  .mf-flow ol {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .mf-flow li {
+    position: relative;
+    padding: 12px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface);
+    overflow-wrap: anywhere;
+  }
+  .mf-flow li:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: calc(50% - 4px);
+    right: -16px;
+    width: 7px;
+    height: 7px;
+    border: solid var(--accent);
+    border-width: 2px 2px 0 0;
+    transform: rotate(45deg);
+  }
+  .mf-stage {
+    display: block;
+    margin-bottom: 3px;
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .mf-flow strong { font-size: 15px; }
+  .mf-flow p { margin: 4px 0 0; color: var(--muted); }
+  @media (max-width: 560px) {
+    .mf-flow ol { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+    .mf-flow li:not(:last-child)::after {
+      top: auto;
+      right: calc(50% - 4px);
+      bottom: -11px;
+      transform: rotate(135deg);
+    }
+  }
+</style>
+```
+
 この分離に合わせて、ポップアップも「①チャット収集」「②コメント表示」の二段階にしました。Meetで収集を始め、表示したいWebタブで拡張を開いて表示先を確定する流れです。表示先には、そのタブで得る[`activeTab`](https://developer.chrome.com/docs/extensions/develop/concepts/activeTab)の一時アクセスを使い、全サイトへの常時アクセスを求めない構成にしています。
 
 ![実装からレンダリングした日本語ポップアップの主要操作部と、停止中・収集中・収集と表示の接続済みを示す三つの状態アイコン。](/images/meet-flow/popup-and-status.png)
