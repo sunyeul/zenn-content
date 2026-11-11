@@ -378,45 +378,6 @@ plt.show()
 - `T` / `H`：履歴の長さ / 予測する長さ
 - `C_po` / `C_pf`：過去のみ / 未来まで分かる共変量の数
 
-```html-embed
-<figure class="ed" lang="ja">
-<figcaption>予測を始める時点で、どこまで分かっている？</figcaption>
-<table class="axis">
-  <thead><tr><th scope="col">入力</th><th scope="col">履歴 T</th><th scope="col">予測区間 H</th></tr></thead>
-  <tbody>
-    <tr><th scope="row">売上・来店数</th><td class="given">入力する</td><td>モデルが予測</td></tr>
-    <tr><th scope="row">競合の動向</th><td class="given">入力する</td><td>入力なし</td></tr>
-    <tr><th scope="row">販促・週末</th><td class="given">入力する</td><td class="given">予定も入力</td></tr>
-  </tbody>
-</table>
-</figure>
-<style>
-body { margin: 0; }
-.ed {
-  --bg: #f1f6f6; --panel: #fff; --ink: #172f34; --muted: #3d565c;
-  --border: #b5cfcb; --accent: #16645b; --tint: #def3ed;
-  margin: 0; padding: 14px; background: var(--bg); color: var(--ink);
-  font: 14px/1.5 system-ui, sans-serif; overflow-wrap: anywhere;
-}
-[data-theme="dark"] .ed {
-  --bg: #102426; --panel: #183236; --ink: #ecf8f6; --muted: #bfd5d2;
-  --border: #668a88; --accent: #a0e6d9; --tint: #214a45;
-}
-.ed *, .ed *::before, .ed *::after { box-sizing: border-box; }
-.ed figcaption { margin: 0 0 10px; font-size: 17px; font-weight: 700; }
-.ed p { margin: 4px 0 0; }
-.ed small { font-size: 12px; color: var(--muted); }
-.ed .grid { display: grid; gap: 8px; grid-template-columns: repeat(var(--columns, 2), minmax(0, 1fr)); }
-.ed .card { min-width: 0; padding: 9px; border: 1px solid var(--border); border-radius: 8px; background: var(--panel); }
-.ed .tag { color: var(--accent); font-weight: 700; }
-.ed .note { margin-top: 8px; color: var(--muted); }
-@media (max-width: 480px) { .ed .grid { grid-template-columns: minmax(0, 1fr); } }
-.ed .axis { border-collapse: separate; border-spacing: 3px; width: 100%; table-layout: fixed; text-align: left; }
-.ed .axis th, .ed .axis td { padding: 6px; border: 1px solid var(--border); border-radius: 4px; background: var(--panel); }
-.ed .axis .given { background: var(--tint); color: var(--accent); }
-</style>
-```
-
 | 入力・出力 | 配列の形 | 用意する値・返される値 |
 | --- | ---: | --- |
 | 予測対象の履歴：`context` | `(V, T)` | 予測したい各系列の過去の値 |

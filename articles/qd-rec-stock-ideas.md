@@ -53,61 +53,18 @@ QDはQuality–Diversityの略です。高い評価を得る推薦を集めな�
 
 対比較では、点数と新旧の区別を隠し、提示順も入れ替えます。この**局所的な競争**によって、似た見方の中では良いほうを残し、異なる見方は共存させます。
 
-```html-embed
-<figure class="ed" lang="ja">
-<figcaption>QD-Recの探索ループと、アーカイブの更新</figcaption>
-<p class="flow">次の候補を選ぶ → 候補と仮説を生成 → 品質評価・新規性判定</p>
-<p class="note"><small>生成時はアーカイブから無作為に選んだ仮説3件を参照し、新規性判定では埋め込みで近い既存3件と照合します。</small></p>
-<div class="choices" role="group" aria-label="表示を切り替える">
-<input id="view-1" type="radio" name="view" checked><label for="view-1">新しい理由</label>
-<input id="view-2" type="radio" name="view"><label for="view-2">似た理由・勝ち</label>
-<input id="view-3" type="radio" name="view"><label for="view-3">似た理由・負け</label>
-<div class="views">
-<div class="view view-1"><div class="card"><strong>追加</strong><p>既存の推薦理由にない観点と判定したら、アーカイブに加える。</p></div></div>
-<div class="view view-2"><div class="card"><strong>入れ替え</strong><p>最も近い既存の推薦と対比較し、新しい推薦が勝てば置き換える。</p></div></div>
-<div class="view view-3"><div class="card"><strong>除外</strong><p>対比較で新しい推薦が負けたら、既存の推薦を残す。</p></div></div>
-</div>
-</div>
-<p class="note"><small>評価結果とアーカイブを、次の候補選びに反映します。</small></p>
-</figure>
-<style>
-body { margin: 0; }
-.ed {
-  --bg: #f1f6f6; --panel: #fff; --ink: #172f34; --muted: #3d565c;
-  --border: #b5cfcb; --accent: #16645b; --tint: #def3ed;
-  margin: 0; padding: 14px; background: var(--bg); color: var(--ink);
-  font: 14px/1.5 system-ui, sans-serif; overflow-wrap: anywhere;
-}
-[data-theme="dark"] .ed {
-  --bg: #102426; --panel: #183236; --ink: #ecf8f6; --muted: #bfd5d2;
-  --border: #668a88; --accent: #a0e6d9; --tint: #214a45;
-}
-.ed *, .ed *::before, .ed *::after { box-sizing: border-box; }
-.ed figcaption { margin: 0 0 10px; font-size: 17px; font-weight: 700; }
-.ed p { margin: 4px 0 0; }
-.ed small { font-size: 12px; color: var(--muted); }
-.ed .grid { display: grid; gap: 8px; grid-template-columns: repeat(var(--columns, 2), minmax(0, 1fr)); }
-.ed .card { min-width: 0; padding: 9px; border: 1px solid var(--border); border-radius: 8px; background: var(--panel); }
-.ed .tag { color: var(--accent); font-weight: 700; }
-.ed .note { margin-top: 8px; color: var(--muted); }
-@media (max-width: 480px) { .ed .grid { grid-template-columns: minmax(0, 1fr); } }
-.ed .choices { display: flex; flex-wrap: wrap; gap: 6px; }
-.ed .choices input { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
-.ed .choices label {
-  padding: 5px 9px; border: 1px solid var(--border); border-radius: 6px;
-  background: var(--panel); color: var(--ink); font-size: 13px; cursor: pointer;
-}
-.ed .choices input:checked + label { background: var(--tint); border-color: var(--accent); color: var(--accent); font-weight: 700; }
-.ed .choices input:focus-visible + label { outline: 2px solid var(--accent); outline-offset: 2px; }
-.ed .views { width: 100%; margin-top: 2px; }
-.ed .view { display: none; }
-.ed #view-1:checked ~ .views .view-1,
-.ed #view-2:checked ~ .views .view-2,
-.ed #view-3:checked ~ .views .view-3 { display: block; }
-
-.ed .flow { background: var(--panel); border: 1px solid var(--border); border-radius: 6px; padding: 7px; font-weight: 700; }
-.ed .choices { margin-top: 8px; }
-</style>
+```mermaid
+flowchart TD
+    S["① 次の候補を選ぶ"] --> G["② 候補＋仮説を生成"]
+    A["アーカイブ：残った推薦"] -. "既存の仮説3件を参照" .-> G
+    G --> J["品質評価・近い推薦との新規性判定"]
+    J --> N{"新しい理由か？"}
+    N -- "はい：追加" --> A
+    N -- "いいえ" --> D["③ 最も近い推薦と対比較"]
+    D -- "勝ち：入れ替え" --> A
+    D -- "負け" --> X["除外"]
+    J -. "評価結果を候補選択へ" .-> S
+    A -. "探索済みの領域を反映" .-> S
 ```
 
 *QD-Recの概念図。今回は生成と品質評価の間に数値検査・反論生成も挟みます。*

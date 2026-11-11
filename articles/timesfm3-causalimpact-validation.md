@@ -96,52 +96,13 @@ y_treated = y0 + effect_positive
 
 今回の設定は、介入前512時点、効果を評価する期間64時点、予測に使う過去の長さ256時点です。介入前の最後の64時点は、最終A/Aのために残します。
 
-```html-embed
-<figure class="ed" lang="ja">
-<figcaption>介入前の検証と、介入後の効果推定</figcaption>
-<div class="grid timeline" style="--columns: 3">
-<div class="card"><strong>開発用の検証</strong><p><span class="tag">介入前 · 0〜447</span><br>予測・A/A・効果注入の評価は447まで</p></div>
-<div class="card"><strong>最後のA/A</strong><p><span class="tag">介入前 · 448〜511</span><br>最終確認のために残しておく</p></div>
-<div class="card"><strong>効果の計算例</strong><p><span class="tag">介入後 · 512〜575</span><br>観測値と反実仮想の予測を比べる</p></div>
-</div>
-<p class="note">どの予測も、直前の256時点を入力し、先の64時点を評価します。</p>
-</figure>
-<style>
-body { margin: 0; }
-.ed {
-  --bg: #f1f6f6; --panel: #fff; --ink: #172f34; --muted: #3d565c;
-  --border: #b5cfcb; --accent: #16645b; --tint: #def3ed;
-  margin: 0; padding: 14px; background: var(--bg); color: var(--ink);
-  font: 14px/1.5 system-ui, sans-serif; overflow-wrap: anywhere;
-}
-[data-theme="dark"] .ed {
-  --bg: #102426; --panel: #183236; --ink: #ecf8f6; --muted: #bfd5d2;
-  --border: #668a88; --accent: #a0e6d9; --tint: #214a45;
-}
-.ed *, .ed *::before, .ed *::after { box-sizing: border-box; }
-.ed figcaption { margin: 0 0 10px; font-size: 17px; font-weight: 700; }
-.ed p { margin: 4px 0 0; }
-.ed small { font-size: 12px; color: var(--muted); }
-.ed .grid { display: grid; gap: 8px; grid-template-columns: repeat(var(--columns, 2), minmax(0, 1fr)); }
-.ed .card { min-width: 0; padding: 9px; border: 1px solid var(--border); border-radius: 8px; background: var(--panel); }
-.ed .tag { color: var(--accent); font-weight: 700; }
-.ed .note { margin-top: 8px; color: var(--muted); }
-@media (max-width: 480px) { .ed .grid { grid-template-columns: minmax(0, 1fr); } }
-.ed .timeline { gap: 18px; }
-.ed .timeline .card { position: relative; }
-.ed .timeline .card:not(:last-child)::after {
-  content: ""; position: absolute; right: -12px; top: calc(50% - 3px);
-  width: 6px; height: 6px; border: solid var(--accent); border-width: 2px 2px 0 0;
-  transform: rotate(45deg);
-}
-@media (max-width: 480px) {
-  .ed .timeline .card:not(:last-child)::after {
-    top: auto; right: calc(50% - 3px); bottom: -12px; transform: rotate(135deg);
-  }
-}
+| 区間 | 時点 | 用途 |
+| --- | --- | --- |
+| 介入前・開発 | 0〜447 | 予測・A/A・効果注入の検証 |
+| 介入前・最終確認 | 448〜511 | 最後のA/A |
+| 介入後 | 512〜575 | 効果の計算例 |
 
-</style>
-```
+どの予測も、直前の256時点を入力し、先の64時点を評価します。
 
 64時点の効果を知りたいなら、検証も64時点先までそろえます。1時点先の予測がよいだけでは、期間全体の誤差は分かりません。
 
