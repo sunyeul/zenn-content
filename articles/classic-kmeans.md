@@ -208,6 +208,72 @@ Lloyd法では、毎回すべての点と中心の距離を比べます。**Mini
 ![区画境界近くのIVF検索。緑の実線は回収した真の最近傍、橙の点線は訪問しなかった区画の最近傍。](/images/classic-kmeans/ivf-boundary.png)
 *原図の説明用260点。星は区画の中心、＋はクエリ。近い点でも、別の区画にあると見落とします。*
 
+```html-embed
+<figure class="ed" lang="ja">
+<figcaption>訪れる区画を増やすと、何が変わる？</figcaption>
+<div class="choices" role="group" aria-label="表示を切り替える">
+<input id="view-1" type="radio" name="view" checked><label for="view-1">nprobe = 1</label>
+<input id="view-2" type="radio" name="view"><label for="view-2">nprobe = 2</label>
+<div class="views">
+<div class="view view-1"><div class="card">
+<div class="zones">
+<div class="zone active"><strong>区画1 · 探索</strong><div aria-hidden="true" class="dots">● ● ●</div><small>上位5点のうち3点</small></div>
+<div class="zone "><strong>区画2 · 未探索</strong><div aria-hidden="true" class="dots">○ ○</div><small>上位5点のうち2点を見落とす</small></div>
+</div>
+<p><strong>比較 29 / 260点</strong>　・　<strong>回収 3 / 5点</strong></p>
+</div></div>
+<div class="view view-2"><div class="card">
+<div class="zones">
+<div class="zone active"><strong>区画1 · 探索</strong><div aria-hidden="true" class="dots">● ● ●</div><small>上位5点のうち3点</small></div>
+<div class="zone active"><strong>区画2 · 探索</strong><div aria-hidden="true" class="dots">● ●</div><small>残り2点を回収</small></div>
+</div>
+<p><strong>比較 88 / 260点</strong>　・　<strong>回収 5 / 5点</strong></p>
+</div></div>
+</div>
+</div>
+<p class="note"><small>●は回収した上位点、○は未回収の上位点。区画と点の配置は模式図です。</small></p>
+</figure>
+<style>
+body { margin: 0; }
+.ed {
+  --bg: #f1f6f6; --panel: #fff; --ink: #172f34; --muted: #3d565c;
+  --border: #b5cfcb; --accent: #16645b; --tint: #def3ed;
+  margin: 0; padding: 14px; background: var(--bg); color: var(--ink);
+  font: 14px/1.5 system-ui, sans-serif; overflow-wrap: anywhere;
+}
+[data-theme="dark"] .ed {
+  --bg: #102426; --panel: #183236; --ink: #ecf8f6; --muted: #bfd5d2;
+  --border: #668a88; --accent: #a0e6d9; --tint: #214a45;
+}
+.ed *, .ed *::before, .ed *::after { box-sizing: border-box; }
+.ed figcaption { margin: 0 0 10px; font-size: 17px; font-weight: 700; }
+.ed p { margin: 4px 0 0; }
+.ed small { font-size: 12px; color: var(--muted); }
+.ed .grid { display: grid; gap: 8px; grid-template-columns: repeat(var(--columns, 2), minmax(0, 1fr)); }
+.ed .card { min-width: 0; padding: 9px; border: 1px solid var(--border); border-radius: 8px; background: var(--panel); }
+.ed .tag { color: var(--accent); font-weight: 700; }
+.ed .note { margin-top: 8px; color: var(--muted); }
+@media (max-width: 480px) { .ed .grid { grid-template-columns: minmax(0, 1fr); } }
+.ed .choices { display: flex; flex-wrap: wrap; gap: 6px; }
+.ed .choices input { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.ed .choices label {
+  padding: 5px 9px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--panel); color: var(--ink); font-size: 13px; cursor: pointer;
+}
+.ed .choices input:checked + label { background: var(--tint); border-color: var(--accent); color: var(--accent); font-weight: 700; }
+.ed .choices input:focus-visible + label { outline: 2px solid var(--accent); outline-offset: 2px; }
+.ed .views { width: 100%; margin-top: 2px; }
+.ed .view { display: none; }
+.ed #view-1:checked ~ .views .view-1,
+.ed #view-2:checked ~ .views .view-2 { display: block; }
+
+.ed .zones { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+.ed .zone { border: 1px dashed var(--border); border-radius: 5px; padding: 6px; }
+.ed .zone.active { background: var(--tint); border-style: solid; }
+.ed .dots { color: var(--accent); }
+</style>
+```
+
 同じ点とクエリで、訪れる区画数 `nprobe` だけを増やすと、次のようになります。
 
 | 訪れる区画数 | 比較する候補 | 真の上位5点の回収 |
