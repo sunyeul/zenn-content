@@ -70,6 +70,7 @@ Useful reminders:
 - Image syntax supports alt text, width hints, and captions on the following line.
 - A GitHub file URL on its own line can render as an embed; inline links are better for light references.
 - Mermaid is supported, but keep diagrams short and simple.
+- Skip `html-embed` when the surrounding explanation or a Markdown table already answers the reader’s question. Use it when the layout makes a relationship, boundary, or flow easier to follow. Prefer a table or Mermaid when readers need to compare values or see all branches at once. Use images for screenshots and experiment plots. Check the [official beta guidance](https://info.zenn.dev/2026-11-11-html-embed) for supported markup and limits.
 - Use short bullets for parallel conditions or findings, numbered lists for steps, and tables for real comparisons. Keep causal reasoning and interpretation in connected prose where a list would fragment them.
 - Use `:::details` for optional background and `:::message` sparingly for essential caveats. Do not hide prerequisites in collapsed sections.
 - If code dominates length, propose collapsing ancillary code or moving it to the notebook rather than compressing necessary explanations. Respect code-preservation and visibility requirements, and keep the runnable order intact.

@@ -18,6 +18,7 @@ Use this checklist before handing off or publishing a Zenn draft.
 - Lists, tables, messages, and details serve distinct reading needs; required steps remain visible.
 - Images have alt text and captions when they carry meaning.
 - Figures are readable on mobile. Figure-reading instructions match display order and account for plots hidden in collapsed sections.
+- For each `html-embed`, read the surrounding section without the figure. Omit it if the explanation or table is sufficient. Keep comparisons visible together when readers need to scan them side by side. In Zenn preview, check that the remaining embeds render, fit the mobile width without horizontal scrolling, and have readable contrast in light and dark modes.
 - Local-only paths and production-process notes appear only when readers need them. Runnable notebooks use direct execution links; featured previous articles use link cards according to project conventions.
 - Editable numeric displays use appropriate precision, with integer counts; rounding does not hide meaningful small values or alter source outputs.
 
